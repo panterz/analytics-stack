@@ -1,18 +1,31 @@
-import { useState } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import './EventForm.css';
+import { AnalyticsEventCreate } from '../services/api';
 
-function EventForm({ onEventCreated }) {
-  const [formData, setFormData] = useState({
+interface EventFormProps {
+  onEventCreated: (eventData: AnalyticsEventCreate) => Promise<void>;
+}
+
+interface FormData {
+  event_name: string;
+  event_category: string;
+  user_id: string;
+  properties: string;
+  value: string;
+}
+
+function EventForm({ onEventCreated }: EventFormProps) {
+  const [formData, setFormData] = useState<FormData>({
     event_name: '',
     event_category: '',
     user_id: '',
     properties: '',
     value: '',
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -20,13 +33,13 @@ function EventForm({ onEventCreated }) {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError(null);
 
     try {
-      const eventData = {
+      const eventData: AnalyticsEventCreate = {
         event_name: formData.event_name,
         event_category: formData.event_category || null,
         user_id: formData.user_id || null,
@@ -45,7 +58,7 @@ function EventForm({ onEventCreated }) {
         value: '',
       });
     } catch (err) {
-      setError(err.message);
+      setError((err as Error).message);
     } finally {
       setIsSubmitting(false);
     }

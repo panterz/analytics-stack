@@ -1,6 +1,13 @@
 import './EventList.css';
+import { AnalyticsEvent } from '../services/api';
 
-function EventList({ events, isLoading, error }) {
+interface EventListProps {
+  events: AnalyticsEvent[];
+  isLoading: boolean;
+  error: string | null;
+}
+
+function EventList({ events, isLoading, error }: EventListProps) {
   if (isLoading) {
     return <div className="event-list loading">Loading events...</div>;
   }

@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import EventForm from './components/EventForm';
 import EventList from './components/EventList';
-import { analyticsApi } from './services/api';
+import { analyticsApi, AnalyticsEvent, AnalyticsEventCreate, HealthResponse } from './services/api';
 
 function App() {
-  const [events, setEvents] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [healthStatus, setHealthStatus] = useState(null);
+  const [events, setEvents] = useState<AnalyticsEvent[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [healthStatus, setHealthStatus] = useState<HealthResponse | null>(null);
 
   const fetchEvents = async () => {
     setIsLoading(true);
@@ -17,7 +17,7 @@ function App() {
       const data = await analyticsApi.getEvents();
       setEvents(data);
     } catch (err) {
-      setError(err.message);
+      setError((err as Error).message);
     } finally {
       setIsLoading(false);
     }
@@ -38,7 +38,7 @@ function App() {
     fetchEvents();
   }, []);
 
-  const handleEventCreated = async (eventData) => {
+  const handleEventCreated = async (eventData: AnalyticsEventCreate) => {
     await analyticsApi.createEvent(eventData);
     await fetchEvents(); // Refresh the list
   };

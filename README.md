@@ -87,9 +87,10 @@ The app will be available at http://localhost:5173
 - **Pydantic** - Data validation using Python type hints
 
 ### Frontend
-- **React** - UI library
+- **React 19** - Modern UI library
+- **TypeScript** - Type-safe JavaScript
 - **Vite** - Build tool and dev server
-- **Modern ES6+** JavaScript
+- **SQL.js** - In-browser SQL database for local caching
 
 ## 📋 Features
 

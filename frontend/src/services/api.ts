@@ -1,8 +1,31 @@
+export interface AnalyticsEvent {
+  id: number;
+  event_name: string;
+  event_category: string | null;
+  user_id: string | null;
+  properties: string | null;
+  value: number | null;
+  timestamp: string;
+}
+
+export interface AnalyticsEventCreate {
+  event_name: string;
+  event_category?: string | null;
+  user_id?: string | null;
+  properties?: string | null;
+  value?: number | null;
+}
+
+export interface HealthResponse {
+  status: string;
+  message: string;
+}
+
 const API_BASE_URL = 'http://localhost:8000';
 
 export const analyticsApi = {
   // Get all analytics events
-  async getEvents() {
+  async getEvents(): Promise<AnalyticsEvent[]> {
     const response = await fetch(`${API_BASE_URL}/api/events`);
     if (!response.ok) {
       throw new Error('Failed to fetch events');
@@ -11,7 +34,7 @@ export const analyticsApi = {
   },
 
   // Create a new analytics event
-  async createEvent(eventData) {
+  async createEvent(eventData: AnalyticsEventCreate): Promise<AnalyticsEvent> {
     const response = await fetch(`${API_BASE_URL}/api/events`, {
       method: 'POST',
       headers: {
@@ -26,7 +49,7 @@ export const analyticsApi = {
   },
 
   // Get specific event by ID
-  async getEvent(eventId) {
+  async getEvent(eventId: number): Promise<AnalyticsEvent> {
     const response = await fetch(`${API_BASE_URL}/api/events/${eventId}`);
     if (!response.ok) {
       throw new Error('Failed to fetch event');
@@ -35,7 +58,7 @@ export const analyticsApi = {
   },
 
   // Health check
-  async checkHealth() {
+  async checkHealth(): Promise<HealthResponse> {
     const response = await fetch(`${API_BASE_URL}/health`);
     if (!response.ok) {
       throw new Error('Health check failed');
