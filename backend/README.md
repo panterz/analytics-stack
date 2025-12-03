@@ -4,15 +4,16 @@ FastAPI backend application with SQLAlchemy ORM and DuckDB integration for advan
 
 ## Setup
 
-1. Create a virtual environment:
+This project uses Poetry 2.0 for dependency management.
+
+1. Install Poetry 2.0 (if not already installed):
 ```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install poetry==2.0.1
 ```
 
 2. Install dependencies:
 ```bash
-pip install -r requirements.txt
+poetry install
 ```
 
 3. Configure environment:
@@ -24,6 +25,12 @@ Edit `.env` to configure PostgreSQL connection if available.
 
 4. Run the server:
 ```bash
+poetry run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+Alternatively, you can activate the Poetry virtual environment and run uvicorn directly:
+```bash
+poetry shell
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
@@ -107,6 +114,8 @@ results = execute_query("SELECT * FROM analytics_events LIMIT 10")
 
 ## Dependencies
 
+This project uses Poetry 2.0 for dependency management. All dependencies are defined in `pyproject.toml`:
+
 - **FastAPI** - Web framework
 - **SQLAlchemy** - ORM for database operations
 - **DuckDB** - Analytical database engine
@@ -114,6 +123,16 @@ results = execute_query("SELECT * FROM analytics_events LIMIT 10")
 - **asyncpg** - Async PostgreSQL driver
 - **Uvicorn** - ASGI server
 - **Pydantic** - Data validation
+
+To add a new dependency:
+```bash
+poetry add <package-name>
+```
+
+To add a development dependency:
+```bash
+poetry add --group dev <package-name>
+```
 
 ## Notes
 
