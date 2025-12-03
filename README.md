@@ -35,15 +35,14 @@ analytics-stack/
 cd backend
 ```
 
-2. Create and activate a virtual environment:
+2. Install Poetry 2.0 (if not already installed):
 ```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install poetry==2.0.1
 ```
 
 3. Install dependencies:
 ```bash
-pip install -r requirements.txt
+poetry install
 ```
 
 4. Configure environment (optional):
@@ -53,7 +52,7 @@ cp .env.example .env
 
 5. Start the server:
 ```bash
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+poetry run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
 The API will be available at http://localhost:8000  
