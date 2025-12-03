@@ -83,6 +83,8 @@ The app will be available at http://localhost:5173
 ### Backend
 - **FastAPI** - Modern, fast web framework for building APIs
 - **SQLAlchemy** - SQL toolkit and ORM
+- **DuckDB** - In-process analytical database
+- **PostgreSQL** - Production database (via DuckDB)
 - **Uvicorn** - ASGI server
 - **Pydantic** - Data validation using Python type hints
 
@@ -90,24 +92,54 @@ The app will be available at http://localhost:5173
 - **React 19** - Modern UI library
 - **TypeScript** - Type-safe JavaScript
 - **Vite** - Build tool and dev server
-- **SQL.js** - In-browser SQL database for local caching
+- **DuckDB WASM** - In-browser analytical database
+- **PGlite** - PostgreSQL in the browser
 
 ## 📋 Features
 
-- ✅ Analytics event tracking
+- ✅ Analytics event tracking with SQLAlchemy ORM
+- ✅ **DuckDB integration** for advanced analytics
+- ✅ **PostgreSQL connectivity** through DuckDB
+- ✅ **SQL query panel** in frontend to query backend DuckDB
+- ✅ **DuckDB WASM** for local data processing
 - ✅ RESTful API with automatic documentation
-- ✅ SQLAlchemy ORM with SQLite database
-- ✅ React-based dashboard
+- ✅ React + TypeScript dashboard
 - ✅ CORS enabled for local development
 - ✅ Real-time event display
 
 ## 🔌 API Endpoints
 
+### Analytics Events
 - `GET /` - Health check
 - `GET /health` - Service health status
 - `POST /api/events` - Create analytics event
 - `GET /api/events` - List all events
 - `GET /api/events/{id}` - Get specific event
+
+### DuckDB Queries
+- `POST /api/duckdb/query` - Execute SQL query against DuckDB
+- `GET /api/duckdb/tables` - List available tables
+- `GET /api/duckdb/schema/{table}` - Get table schema
+- `GET /api/duckdb/analytics/summary` - Analytics summary
+- `GET /api/duckdb/analytics/events-by-category` - Events by category
+
+## 🦆 DuckDB Integration
+
+The stack includes DuckDB for powerful analytical queries:
+
+**Backend**: DuckDB connects to PostgreSQL and provides analytical query capabilities
+**Frontend**: DuckDB WASM runs queries locally in the browser
+
+### Example Query
+
+```typescript
+// Frontend: Execute query against backend DuckDB
+const result = await executeBackendQuery(`
+  SELECT event_category, COUNT(*) as count 
+  FROM analytics_events 
+  GROUP BY event_category
+`);
+```
 
 ## 📝 License
 

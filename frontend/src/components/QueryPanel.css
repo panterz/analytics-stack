@@ -1,0 +1,157 @@
+.query-panel {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.query-panel h2 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.query-panel-description {
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.sample-queries {
+  margin-bottom: 1.5rem;
+}
+
+.sample-queries label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #555;
+  font-weight: 500;
+}
+
+.sample-query-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.sample-query-btn {
+  background: #f0f0f0;
+  color: #333;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.sample-query-btn:hover {
+  background: #e0e0e0;
+  border-color: #bbb;
+}
+
+.query-input {
+  margin-bottom: 1rem;
+}
+
+.query-input label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #555;
+  font-weight: 500;
+}
+
+.query-input textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+.query-input textarea:focus {
+  outline: none;
+  border-color: #646cff;
+}
+
+.execute-btn {
+  background: #646cff;
+  color: white;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-bottom: 1rem;
+}
+
+.execute-btn:hover:not(:disabled) {
+  background: #535bf2;
+}
+
+.execute-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.query-error {
+  background: #fee;
+  color: #c33;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  border-left: 4px solid #c33;
+}
+
+.query-result {
+  margin-top: 1.5rem;
+}
+
+.query-result h3 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.result-table-container {
+  overflow-x: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.result-table thead {
+  background: #f5f5f5;
+}
+
+.result-table th {
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 2px solid #ddd;
+}
+
+.result-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #eee;
+  color: #555;
+}
+
+.result-table tbody tr:hover {
+  background: #fafafa;
+}
+
+.result-table tbody tr:last-child td {
+  border-bottom: none;
+}
