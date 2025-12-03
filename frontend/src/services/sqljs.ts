@@ -2,12 +2,16 @@ import initSqlJs, { Database } from 'sql.js';
 
 let db: Database | null = null;
 
+// Configure SQL.js location - can be overridden via environment variable
+const SQLJS_CDN = import.meta.env.VITE_SQLJS_CDN || 'https://sql.js.org/dist/';
+
 export const initDatabase = async (): Promise<Database> => {
   if (db) return db;
 
   try {
     const SQL = await initSqlJs({
-      locateFile: (file) => `https://sql.js.org/dist/${file}`,
+      // Use CDN by default, but can be configured to use local copy
+      locateFile: (file) => `${SQLJS_CDN}${file}`,
     });
 
     db = new SQL.Database();
@@ -65,6 +69,28 @@ export interface LocalEvent {
   synced: number;
 }
 
+// Helper function to validate and convert row to LocalEvent
+const validateLocalEvent = (row: Record<string, unknown>): LocalEvent => {
+  // Validate required fields
+  if (typeof row.id !== 'number') {
+    throw new Error('Invalid event: id must be a number');
+  }
+  if (typeof row.event_name !== 'string') {
+    throw new Error('Invalid event: event_name must be a string');
+  }
+  
+  return {
+    id: row.id,
+    event_name: row.event_name,
+    event_category: row.event_category === null ? null : String(row.event_category),
+    user_id: row.user_id === null ? null : String(row.user_id),
+    properties: row.properties === null ? null : String(row.properties),
+    value: row.value === null ? null : Number(row.value),
+    timestamp: String(row.timestamp || ''),
+    synced: Number(row.synced || 0),
+  };
+};
+
 // Get all local events
 export const getLocalEvents = async (): Promise<LocalEvent[]> => {
   const database = await initDatabase();
@@ -80,7 +106,7 @@ export const getLocalEvents = async (): Promise<LocalEvent[]> => {
     columns.forEach((col, idx) => {
       obj[col] = row[idx];
     });
-    return obj as LocalEvent;
+    return validateLocalEvent(obj);
   });
 };
 

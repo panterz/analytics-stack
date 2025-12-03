@@ -74,3 +74,12 @@ await addLocalEvent('page_view', 'navigation', 'user123', '{"page": "/home"}', 1
 // Get all local events
 const events = await getLocalEvents();
 ```
+
+### Configuring SQL.js CDN
+
+By default, SQL.js loads from the official CDN. To use a local copy or different CDN:
+
+1. Create a `.env` file in the frontend directory
+2. Add: `VITE_SQLJS_CDN=https://your-cdn.com/path/to/sqljs/`
+
+Or bundle SQL.js locally by copying the wasm files to your public directory.
