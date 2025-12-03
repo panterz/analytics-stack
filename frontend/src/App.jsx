@@ -28,6 +28,7 @@ function App() {
       const health = await analyticsApi.checkHealth();
       setHealthStatus(health);
     } catch (err) {
+      console.error('Health check failed:', err);
       setHealthStatus({ status: 'error', message: 'Backend unavailable' });
     }
   };
