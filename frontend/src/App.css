@@ -1,0 +1,65 @@
+.app {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem;
+}
+
+.app-header {
+  text-align: center;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.app-header h1 {
+  font-size: 3rem;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.header-info {
+  margin-top: 1rem;
+}
+
+.header-info p {
+  font-size: 1.25rem;
+  margin: 0.5rem 0;
+  opacity: 0.9;
+}
+
+.health-status {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.health-status.ok,
+.health-status.healthy {
+  background: rgba(76, 175, 80, 0.9);
+  color: white;
+}
+
+.health-status.error {
+  background: rgba(244, 67, 54, 0.9);
+  color: white;
+}
+
+.app-main {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .app {
+    padding: 1rem;
+  }
+
+  .app-header h1 {
+    font-size: 2rem;
+  }
+
+  .header-info p {
+    font-size: 1rem;
+  }
+}
