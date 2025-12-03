@@ -28,7 +28,30 @@ analytics-stack/
 
 ## 🚀 Quick Start
 
-### Backend Setup
+### 🐳 Docker Compose (Recommended)
+
+The fastest way to get started is using Docker Compose:
+
+```bash
+# Start all services (PostGIS, backend, frontend)
+docker compose up -d
+
+# View logs
+docker compose logs -f
+```
+
+Access the application:
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:8000/docs
+- **PostgreSQL**: localhost:5432
+
+See [DOCKER.md](DOCKER.md) for detailed Docker Compose documentation.
+
+### Manual Setup
+
+If you prefer to run services individually:
+
+#### Backend Setup
 
 1. Navigate to the backend directory:
 ```bash
@@ -93,6 +116,11 @@ The app will be available at http://localhost:5173
 - **Vite** - Build tool and dev server
 - **DuckDB WASM** - In-browser analytical database
 - **PGlite** - PostgreSQL in the browser
+
+### Docker
+- **PostgreSQL with PostGIS** - Geospatial database
+- **Docker Compose** - Multi-container orchestration
+- **Nginx** - Production web server for frontend
 
 ## 📋 Features
 

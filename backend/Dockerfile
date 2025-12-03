@@ -10,17 +10,11 @@ RUN apt-get update && apt-get install -y \
     postgresql-client \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Poetry
-RUN pip install poetry==2.0.1
-
 # Copy dependency files
-COPY pyproject.toml poetry.lock* ./
-
-# Configure Poetry to not create virtual environments in Docker
-RUN poetry config virtualenvs.create false
+COPY requirements.txt ./
 
 # Install dependencies
-RUN poetry install --no-interaction --no-ansi
+RUN pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org -r requirements.txt
 
 # Copy application code
 COPY . .
