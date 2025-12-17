@@ -2,9 +2,7 @@ import {
   createRoomShellSlice,
   createRoomStore,
   RoomShellSliceState,
-  LayoutTypes,
 } from '@sqlrooms/room-shell';
-import {DatabaseIcon} from 'lucide-react';
 
 /**
  * The whole room state.

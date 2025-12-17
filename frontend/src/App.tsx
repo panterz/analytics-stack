@@ -3,6 +3,7 @@ import './App.css';
 import EventForm from './components/EventForm';
 import EventList from './components/EventList';
 import QueryPanel from './components/QueryPanel';
+import SQLRoomsPanel from './components/SQLRoomsPanel';
 import { analyticsApi, AnalyticsEvent, AnalyticsEventCreate, HealthResponse } from './services/api';
 
 function App() {
@@ -49,7 +50,7 @@ function App() {
       <header className="app-header">
         <h1>Analytics Stack</h1>
         <div className="header-info">
-          <p>FastAPI + React + DuckDB + PostgreSQL</p>
+          <p>FastAPI + React + SQLRooms + DuckDB + PostgreSQL</p>
           {healthStatus && (
             <div className={`health-status ${healthStatus.status}`}>
               Backend: {healthStatus.status}
@@ -60,6 +61,7 @@ function App() {
 
       <main className="app-main">
         <EventForm onEventCreated={handleEventCreated} />
+        <SQLRoomsPanel />
         <QueryPanel />
         <EventList events={events} isLoading={isLoading} error={error} />
       </main>

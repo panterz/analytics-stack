@@ -1,6 +1,6 @@
 # Analytics Stack
 
-A modern monorepo featuring a FastAPI backend with SQLAlchemy and a React frontend for analytics tracking.
+A modern monorepo featuring a FastAPI backend with SQLAlchemy and a React frontend with SQLRooms for analytics tracking and data visualization.
 
 ## 🏗️ Project Structure
 
@@ -114,7 +114,10 @@ The app will be available at http://localhost:5173
 - **React 19** - Modern UI library
 - **TypeScript** - Type-safe JavaScript
 - **Vite** - Build tool and dev server
-- **DuckDB WASM** - In-browser analytical database
+- **SQLRooms** - Building blocks for React data analytics applications
+- **DuckDB WASM** - In-browser analytical database (via SQLRooms)
+- **Tailwind CSS** - Utility-first CSS framework
+- **Zustand** - State management (via SQLRooms)
 - **PGlite** - PostgreSQL in the browser
 
 ### Docker
@@ -125,10 +128,13 @@ The app will be available at http://localhost:5173
 ## 📋 Features
 
 - ✅ Analytics event tracking with SQLAlchemy ORM
+- ✅ **SQLRooms integration** - Modern React framework for data analytics
 - ✅ **DuckDB integration** for advanced analytics
 - ✅ **PostgreSQL connectivity** through DuckDB
 - ✅ **SQL query panel** in frontend to query backend DuckDB
-- ✅ **DuckDB WASM** for local data processing
+- ✅ **DuckDB WASM** for local data processing (via SQLRooms)
+- ✅ **Room-based state management** with Zustand
+- ✅ **React hooks for SQL queries** (useSql from SQLRooms)
 - ✅ RESTful API with automatic documentation
 - ✅ React + TypeScript dashboard
 - ✅ CORS enabled for local development
@@ -150,14 +156,48 @@ The app will be available at http://localhost:5173
 - `GET /api/duckdb/analytics/summary` - Analytics summary
 - `GET /api/duckdb/analytics/events-by-category` - Events by category
 
+## 🏢 SQLRooms Integration
+
+The frontend integrates [SQLRooms](https://github.com/sqlrooms/sqlrooms), a powerful React framework for building data analytics applications with DuckDB WASM.
+
+### What is SQLRooms?
+
+SQLRooms provides building blocks for creating modern, interactive data-analytics applications that run entirely in the browser:
+
+- **In-browser DuckDB WASM** - Columnar analytics speed with zero backend load
+- **Room-based architecture** - Self-contained workspaces for data analysis
+- **React hooks** - Easy-to-use hooks like `useSql` for SQL queries
+- **State management** - Built on Zustand for predictable state
+- **Theme support** - Light/dark themes via ThemeProvider
+- **Modular design** - Composable slices for flexible architecture
+
+### Example Usage
+
+```typescript
+// Using SQLRooms useSql hook
+import { useSql } from '@sqlrooms/duckdb';
+import { useRoomStore } from './room-store';
+
+function MyComponent() {
+  const dbReady = useRoomStore((state) => state.db.isReady);
+  
+  const { data, isLoading, error } = useSql({
+    query: 'SELECT * FROM my_table LIMIT 10',
+    enabled: dbReady,
+  });
+  
+  return <div>{/* render data */}</div>;
+}
+```
+
 ## 🦆 DuckDB Integration
 
 The stack includes DuckDB for powerful analytical queries:
 
-**Backend**: DuckDB connects to PostgreSQL and provides analytical query capabilities
-**Frontend**: DuckDB WASM runs queries locally in the browser
+**Backend**: DuckDB connects to PostgreSQL and provides analytical query capabilities  
+**Frontend**: DuckDB WASM runs queries locally in the browser via SQLRooms
 
-### Example Query
+### Backend Query Example
 
 ```typescript
 // Frontend: Execute query against backend DuckDB
