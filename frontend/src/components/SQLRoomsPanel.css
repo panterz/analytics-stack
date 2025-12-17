@@ -1,0 +1,146 @@
+.sqlrooms-panel {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sqlrooms-panel h2 {
+  margin-top: 0;
+  color: #1a1a1a;
+  font-size: 1.5em;
+}
+
+.sqlrooms-panel h3 {
+  color: #333;
+  font-size: 1.2em;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.sqlrooms-panel-description {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.sqlrooms-status {
+  background: #f5f5f5;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.status-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.status-item:last-child {
+  border-bottom: none;
+}
+
+.status-label {
+  font-weight: 600;
+  color: #555;
+}
+
+.status-value {
+  font-family: monospace;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: #e0e0e0;
+}
+
+.status-value.ready {
+  background: #4caf50;
+  color: white;
+}
+
+.status-value.not-ready {
+  background: #ff9800;
+  color: white;
+}
+
+.sqlrooms-demo {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.sqlrooms-demo pre {
+  background: #1a1a1a;
+  color: #00ff00;
+  padding: 10px;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-size: 0.9em;
+}
+
+.sqlrooms-features {
+  background: #e3f2fd;
+  padding: 15px;
+  border-radius: 6px;
+}
+
+.sqlrooms-features ul {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.sqlrooms-features li {
+  margin: 8px 0;
+  color: #0d47a1;
+}
+
+.query-error {
+  background: #ffebee;
+  color: #c62828;
+  padding: 10px;
+  border-radius: 4px;
+  border-left: 4px solid #c62828;
+}
+
+.query-result {
+  margin-top: 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .sqlrooms-panel {
+    background: #1a1a1a;
+    color: #ffffff;
+  }
+
+  .sqlrooms-panel h2,
+  .sqlrooms-panel h3 {
+    color: #ffffff;
+  }
+
+  .sqlrooms-panel-description {
+    color: #ccc;
+  }
+
+  .sqlrooms-status {
+    background: #2a2a2a;
+  }
+
+  .status-label {
+    color: #ddd;
+  }
+
+  .sqlrooms-demo {
+    background: #2a2a2a;
+  }
+
+  .sqlrooms-features {
+    background: #1e3a5f;
+  }
+
+  .sqlrooms-features li {
+    color: #90caf9;
+  }
+}
+
