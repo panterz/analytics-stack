@@ -1,0 +1,12 @@
+.hello-world {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  font-size: 2rem;
+}
+
+.hello-world h1 {
+  color: #333;
+  font-weight: bold;
+}
